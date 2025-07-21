@@ -1,15 +1,32 @@
 import { useState } from "react";
 import '../styles/form.css';
 
-function ContactForm({ addContact }) {
+interface Contact {
+  name: string;
+  phone: string;
+  email?: string;
+  notes?: string;
+}
+
+interface ContactFormProps {
+  addContact: (contact: Contact) => void;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ addContact }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [notes, setNotes] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name) return;
+    if (!name.trim() || !phone.trim()) {
+    alert("Please enter both Name and Phone.");
+    return; 
+    }
+
+    
+
     addContact({ name, phone, email, notes });
     setName("");
     setPhone("");
@@ -52,6 +69,6 @@ function ContactForm({ addContact }) {
     </form>
     </div>
   );
-}
+};
 
 export default ContactForm;

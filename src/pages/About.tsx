@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-function About(){
+const About: React.FC = () => {
     return(
         <div>
             <Navbar />
