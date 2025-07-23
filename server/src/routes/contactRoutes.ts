@@ -22,10 +22,27 @@ router.post('/', async (req: Request, res: Response<{ message: string; id?: numb
       'INSERT INTO contacts (name, phone, email, notes) VALUES (?, ?, ?, ?)',
       [name, phone, email, notes]
     );
-    res.status(201).json({ message: 'Contacto creado', id: result.insertId });
+    res.status(201).json({ message: 'Contact added', id: result.insertId });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al crear contacto' });
+    res.status(500).json({ message: 'Error when trying to create contact' });
+  }
+});
+
+router.delete('/:id', async (req: Request, res: Response<{ message: string }>) => {
+  const { id } = req.params;
+
+  try {
+    const [result] = await pool.query<ResultSetHeader>('DELETE FROM contacts WHERE id = ?', [id]);
+    
+   if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Contact not found' });
+    }
+
+    res.json({ message: 'Contact deleted' });
+  } catch (error) {
+    console.error('Error when trying to delete contact:', error);
+    res.status(500).json({ message: 'Error when trying to delete contact:' });
   }
 });
 

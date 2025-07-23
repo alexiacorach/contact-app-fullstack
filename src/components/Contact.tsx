@@ -1,21 +1,25 @@
 import React from "react";
 
 interface ContactProps {
+  id: number;
   name: string;
   phone: string;
   email?: string;
   notes?: string;
+  onDelete: (id: number) => void; 
 }
 
-const Contact: React.FC<ContactProps> = ({ name, phone, email, notes }) => {
+const Contact: React.FC<ContactProps> = ({ id, name, phone, email, notes, onDelete}) => {
   return (
     <div className="contacto">
-      <h2>{name}</h2>
-      <p>{phone}</p>
-      {email && <p>{email}</p>}
-      {notes && <p>{notes}</p>}
+     <p><strong>{name}</strong> - {phone}</p>
+      {email && <p>Email: {email}</p>}
+      {notes && <p>Notas: {notes}</p>}
+      <button onClick={() => onDelete(id)}> Eliminar</button>
     </div>
   );
 };
+
+
 
 export default Contact;

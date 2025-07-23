@@ -6,12 +6,3 @@ export interface Contact{
     notes: string;
 }
 
-export interface OkPacket {
-  fieldCount: number;
-  affectedRows: number;
-  insertId: number;
-  info: string;
-  serverStatus: number;
-  warningStatus: number;
-  message: string;
-}
