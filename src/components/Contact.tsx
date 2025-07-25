@@ -22,8 +22,8 @@ const Contact: React.FC<ContactProps> = ({ id, name, phone, email, notes, onDele
      <p><strong>{name}</strong> - {phone}</p>
       {email && <p>Email: {email}</p>}
       {notes && <p>Notas: {notes}</p>}
-      <button onClick={() => onEdit({id, name, phone, email, notes})}></button>
-      <button onClick={() => onDelete(id)}> Eliminar</button>
+      <button onClick={() => onEdit({id, name, phone, email, notes})}>Edit</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </div>
   );
 };

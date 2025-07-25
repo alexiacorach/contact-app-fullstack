@@ -52,12 +52,12 @@ router.put("/:id", async (req: Request, res: Response) => {
   const { name, phone, email, notes } = req.body;
 
   try {
-    const [result] = await pool.query(
+    await pool.query(
       "UPDATE contacts SET name = ?, phone = ?, email = ?, notes = ? WHERE id = ?",
       [name, phone, email, notes, id]
     );
 
-    res.json({ message: "Contact updated ", result });
+    res.json({ id: Number(id), name, phone, email, notes });
   } catch (error) {
     console.error("Error contact update:", error);
     res.status(500).json({ message: "Error when updating" });

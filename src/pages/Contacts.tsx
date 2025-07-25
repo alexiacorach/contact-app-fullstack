@@ -14,7 +14,7 @@ export interface Contact {
 const Contacts: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [editingContact, setEditingContact] = useState<Contact | null>(null);
-
+  const [searchTerm, setSearchTerm] = useState("");
 
   // cargar contactos iniciales
   useEffect(() => {
@@ -23,27 +23,7 @@ const Contacts: React.FC = () => {
       .then((data: Contact[]) => setContacts(data))
       .catch((err) => console.error("Error fetching contacts:", err));
   }, []);
-/*
-  // crear contacto 
-  const createContact = async (contact: Omit<Contact, "id">) => {
-    try {
-      const res = await fetch("http://localhost:3001/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
-      const data = await res.json();
-      if (res.ok && data.id) {
-        setContacts((prev) => [...prev, { ...contact, id: data.id }]);
-      } else {
-        alert("Error creating contact: " + (data.message || ""));
-      }
-    } catch (error) {
-      console.error("Network error creating contact:", error);
-      alert("Network error.");
-    }
-  };
-*/
+  
   const deleteContact = async (id: number) => {
     try {
       await fetch(`http://localhost:3001/contacts/${id}`, {
@@ -57,65 +37,81 @@ const Contacts: React.FC = () => {
   };
 
   const handleSubmit = async (contact: Omit<Contact, "id"> | Contact) => {
-    if(editingContact){
+    if (editingContact) {
       //editar
-      try{
-        const res = await fetch (`http://localhost:3001/contacts/${editingContact.id}`, {
-          method: "PUT",
-          headers :{"Content-Type" : "application/json"},
-          body: JSON.stringify(contact),
-        })
+      try {
+        const res = await fetch(
+          `http://localhost:3001/contacts/${editingContact.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(contact),
+          }
+        );
 
-        if(res.ok){
+        if (res.ok) {
           const updated = await res.json();
           setContacts((prev) =>
-          prev.map((c) => (c.id === updated.id ? updated : c ))
-        )
-        setEditingContact(null);
+            prev.map((c) => (c.id === updated.id ? updated : c))
+          );
+          setEditingContact(null);
         } else {
-          alert("Error updating contact")
+          alert("Error updating contact");
         }
-      }catch(error){
-        console.error("Error updating : ", error)
+      } catch (error) {
+        console.error("Error updating : ", error);
       }
-    }else {
+    } else {
       //crear
       try {
-         const res = await fetch("http://localhost:3001/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
-      const data = await res.json();
-      if (res.ok && data.id) {
-        setContacts((prev) => [...prev, { ...contact, id: data.id }]);
-      } else {
-        alert("Error creating contact.");
-      }
-    } catch (error) {
-      console.error("Error creating:", error);
+        const res = await fetch("http://localhost:3001/contacts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(contact),
+        });
+        const data = await res.json();
+        if (res.ok && data.id) {
+          setContacts((prev) => [...prev, { ...contact, id: data.id }]);
+        } else {
+          alert("Error creating contact.");
+        }
+      } catch (error) {
+        console.error("Error creating:", error);
       }
     }
-  }
+  };
 
   const editContact = (contact: Contact) => {
-  setEditingContact(contact);
-};
+    setEditingContact(contact);
+  };
 
+  //buscador lista filtrada
+
+  const filteredContacts = contacts.filter((c) =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-  <div>
-    <Navbar />
-    <h1>Contacts List</h1>
-    <ContactForm onSubmit={handleSubmit} editingContact={editingContact} />
-    <ContactList
-      contacts={contacts}
-      onDelete={deleteContact}
-      onEdit={editContact}
-    />
-  </div>
-);
+    <div>
+      <Navbar />
+      <h1>Contacts List</h1>
+      <ContactForm onSubmit={handleSubmit} editingContact={editingContact} />
 
+      <input
+        type="text"
+        placeholder="Search Contact by Name..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ margin: "1rem 0", padding: "0.5rem", width: "100%" }}
+      />
+
+      <ContactList
+        contacts={filteredContacts}
+        onDelete={deleteContact}
+        onEdit={editContact}
+      />
+    </div>
+  );
 };
 
 export default Contacts;
