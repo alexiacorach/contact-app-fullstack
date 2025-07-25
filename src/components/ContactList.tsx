@@ -13,12 +13,13 @@ interface Contact {
 interface ContactListProps {
   contacts: Contact[];
   onDelete: (id: number) => void;
+  onEdit: (contact : Contact) => void;
 }
 
-const ContactList: React.FC<ContactListProps> = ({ contacts, onDelete  }) => {
+const ContactList: React.FC<ContactListProps> = ({ contacts, onDelete, onEdit }) => {
   return (
     <div>
-      {contacts.map((contact, index) => (
+      {contacts.map((contact) => (
         <Contact
            key={contact.id}
           id={contact.id}
@@ -27,6 +28,7 @@ const ContactList: React.FC<ContactListProps> = ({ contacts, onDelete  }) => {
           email={contact.email}
           notes={contact.notes}
           onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
     </div>

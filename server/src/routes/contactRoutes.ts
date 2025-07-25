@@ -46,4 +46,23 @@ router.delete('/:id', async (req: Request, res: Response<{ message: string }>) =
   }
 });
 
+
+router.put("/:id", async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { name, phone, email, notes } = req.body;
+
+  try {
+    const [result] = await pool.query(
+      "UPDATE contacts SET name = ?, phone = ?, email = ?, notes = ? WHERE id = ?",
+      [name, phone, email, notes, id]
+    );
+
+    res.json({ message: "Contact updated ", result });
+  } catch (error) {
+    console.error("Error contact update:", error);
+    res.status(500).json({ message: "Error when updating" });
+  }
+});
+
+
 export default router;
