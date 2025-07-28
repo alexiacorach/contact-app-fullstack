@@ -1,0 +1,25 @@
+.home-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.home-subtitle {
+  font-size: 1.8rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.home-paragraph {
+  font-size: 1.6rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 1rem 0;
+}

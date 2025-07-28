@@ -1,0 +1,44 @@
+.contacts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.contact {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.contact button {
+  padding: 0.6rem 1rem;
+  margin: 1rem 0.9rem 0 0;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact .edit-btn {
+  background-color: #748375;
+  color: white;
+}
+
+.contact .edit-btn:hover {
+  background-color: #388e3c;
+}
+
+.contact .delete-btn {
+  background-color: #c28c88;
+  color: white;
+}
+
+.contact .delete-btn:hover {
+  background-color: #d32f2f;
+}
+

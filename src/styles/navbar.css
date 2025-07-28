@@ -1,12 +1,14 @@
 .navbar{
     background-color: rgb(109, 105, 105);
     padding: 1rem;
+    border-radius: 0.5rem;
 }
+
 
 .navbar ul{
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .navbar li{
@@ -17,6 +19,7 @@
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.6rem;
 }
 .navbar a:hover{
     text-decoration: underline;

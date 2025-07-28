@@ -1,5 +1,6 @@
 import React from "react";
 import Contact from "./Contact";
+import '../styles/contactList.css'
 
 
 interface Contact {
@@ -18,7 +19,7 @@ interface ContactListProps {
 
 const ContactList: React.FC<ContactListProps> = ({ contacts, onDelete, onEdit }) => {
   return (
-    <div>
+    <div className="contacts-container">
       {contacts.map((contact) => (
         <Contact
            key={contact.id}

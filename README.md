@@ -1,12 +1,62 @@
-# React + Vite
+# 📇 Contact App Fullstack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación fullstack de gestión de contactos que permite crear, visualizar, buscar, editar y eliminar contactos. Desarrollada con React, TypeScript, Express y MySQL.
 
-Currently, two official plugins are available:
+A managing contact fullstack proyect, that allows the user to insert, visualize, search for, delete and edit a contact.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Demo
 
-## Expanding the ESLint configuration
+_(Próximamente)_
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+_(Soon...)_
+
+## 🛠️ Tecnologías utilizadas
+
+**Frontend:**
+- React
+- TypeScript
+- CSS
+
+**Backend:**
+- Node.js
+- Express
+- TypeScript
+
+**Base de datos:**
+- MySQL
+- phpMyAdmin
+
+---
+
+## 📂 Estructura del proyecto
+contact-app-fullstack/
+│
+├── client/ # Frontend en React
+│ ├── src/
+│ │ ├── components/ # ContactForm, ContactList, Contacts, Navbar
+│ │ ├── pages/ # Página principal
+│ │ ├── styles/ # CSS general y de componentes
+│ │ └── main.tsx
+│ │ └── App.tsx
+│ │ └── AppRoutes.tsx
+│
+├── server/ # Backend con Express
+│ ├── src/
+│ │ ├── routes/ # Rutas de API
+│ │ ├── db.ts # Configuración MySQL
+│ │ └── index.ts # Entrada del servidor
+
+## ✅ Funcionalidades / Functionality
+
+- 📥Crear nuevos contactos/Create new contacts
+-  Ver lista de contactos/Visualize contactS List
+-  Buscar contactos por nombre/ Search Contact by Name
+-  Editar contactos / Edit contact
+-  Eliminar contactos / Delete contact
+-  Persistencia en base de datos MySQL / Uploaded into MySql database
+-  Estilos con CSS responsivo/ Responsive CSS styles
+
+🙋‍♀️ Desarrollado por / Developed by
+Alexia Corach
+📧 alucor18@gmail.com
+🔗 GitHub https://github.com/alexiacorach

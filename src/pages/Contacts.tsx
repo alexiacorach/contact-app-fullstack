@@ -94,7 +94,7 @@ const Contacts: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <h1>Contacts List</h1>
+      <h1 style={{ textAlign: "center", fontSize: "2.2rem", margin: "1.5rem 0" }}>Contacts List</h1>
       <ContactForm onSubmit={handleSubmit} editingContact={editingContact} />
 
       <input
@@ -102,7 +102,7 @@ const Contacts: React.FC = () => {
         placeholder="Search Contact by Name..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ margin: "1rem 0", padding: "0.5rem", width: "100%" }}
+        style={{ margin: "1rem 0", padding: "0.5rem", width: "100%", textAlign: "center" }}
       />
 
       <ContactList

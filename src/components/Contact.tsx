@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/contactList.css'
 
 interface ContactProps {
   id: number;
@@ -18,12 +19,12 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ id, name, phone, email, notes, onDelete , onEdit}) => {
   return (
-    <div className="contacto">
+    <div className="contact">
      <p><strong>{name}</strong> - {phone}</p>
       {email && <p>Email: {email}</p>}
       {notes && <p>Notas: {notes}</p>}
-      <button onClick={() => onEdit({id, name, phone, email, notes})}>Edit</button>
-      <button onClick={() => onDelete(id)}>Delete</button>
+      <button className="edit-btn" onClick={() => onEdit({id, name, phone, email, notes})}>Edit</button>
+      <button className="delete-btn" onClick={() => onDelete(id)}>Delete</button>
     </div>
   );
 };
