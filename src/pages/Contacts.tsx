@@ -18,7 +18,7 @@ const Contacts: React.FC = () => {
 
   // cargar contactos iniciales
   useEffect(() => {
-    fetch("http://localhost:3001/contacts")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/contacts`)
       .then((res) => res.json())
       .then((data: Contact[]) => setContacts(data))
       .catch((err) => console.error("Error fetching contacts:", err));
@@ -26,7 +26,7 @@ const Contacts: React.FC = () => {
   
   const deleteContact = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/contacts/${id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/contacts/${id}`, {
         method: "DELETE",
       });
 
@@ -41,7 +41,7 @@ const Contacts: React.FC = () => {
       //editar
       try {
         const res = await fetch(
-          `http://localhost:3001/contacts/${editingContact.id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/contacts/${editingContact.id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -64,7 +64,7 @@ const Contacts: React.FC = () => {
     } else {
       //crear
       try {
-        const res = await fetch("http://localhost:3001/contacts", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/contacts`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(contact),
